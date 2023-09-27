@@ -82,11 +82,3 @@ CREATE TABLE MovieRatings(
     mid TEXT,
     rating INTEGER
 );
-
-DROP TABLE IF EXISTS IMDBRatings;
-CREATE TABLE IMDBRatings(
-    id TEXT,
-    rating FLOAT,
-    votes INTEGER,
-    PRIMARY KEY (id)
-);
