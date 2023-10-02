@@ -7,7 +7,7 @@ Having difficulty choosing what to watch? **Not Anymore**
 
 * **Engineering:**
     
-    There's a growing need for streamlined experiences in cinema, where storytelling meets technology. Our motivation is to create a platform that simplifies movie exploration. By integrating data from different sources and employing intelligent algorithms, we aim to provide users with a go-to movie recommendation platformaligned with their interests.
+    There's a growing need for streamlined experiences in cinema, where storytelling meets technology. Our motivation is to create a platform that simplifies movie exploration. By integrating data from different sources and employing intelligent algorithms, we aim to provide users with a go-to movie recommendation platform aligned with their interests.
 
 * **Research:**
     
