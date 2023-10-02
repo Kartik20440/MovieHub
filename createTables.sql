@@ -69,16 +69,20 @@ CREATE TABLE TMDBPerson(
     PRIMARY KEY (id)
 );
 
+DROP TABLE IF EXISTS RTMovie;
+CREATE TABLE RTMovie(
+    title TEXT,
+    cast1 TEXT,
+    cast2 TEXT,
+    description TEXT,
+    director TEXT,
+    genre TEXT,
+    rating TEXT
+);
+
 DROP TABLE IF EXISTS Mapping;
 CREATE TABLE Mapping(
     movieId TEXT,
     imDBId TEXT,
     tmdbId TEXT
-);
-
-DROP TABLE IF EXISTS MovieRatings;
-CREATE TABLE MovieRatings(
-    uid TEXT,
-    mid TEXT,
-    rating INTEGER
 );
