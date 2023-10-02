@@ -11,6 +11,26 @@ CREATE TABLE IMDBMovie (
     PRIMARY KEY (mid)
 );
 
+DROP TABLE IF EXISTS IMDBPerson;
+CREATE TABLE IMDBPerson(
+    mid INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255),
+    birthday YEAR,
+    deathday YEAR,
+    primary_profession TEXT,
+    known_for TEXT,
+    imdb_link TEXT,
+    PRIMARY KEY (mid)
+);
+
+DROP TABLE IF EXISTS IMDBRatings;
+CREATE TABLE IMDBRatings(
+    id TEXT,
+    rating FLOAT,
+    votes INTEGER,
+    PRIMARY KEY (id)
+);
+
 DROP TABLE IF EXISTS TMDBMovie;
 CREATE TABLE TMDBMovie (
     id INT NOT NULL AUTO_INCREMENT,
@@ -31,18 +51,6 @@ CREATE TABLE TMDBMovie (
     PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS IMDBPerson;
-CREATE TABLE IMDBPerson(
-    mid INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(255),
-    birthday YEAR,
-    deathday YEAR,
-    primary_profession TEXT,
-    known_for TEXT,
-    imdb_link TEXT,
-    PRIMARY KEY (mid)
-);
-
 DROP TABLE IF EXISTS TMDBPerson;
 CREATE TABLE TMDBPerson(
     id INT NOT NULL AUTO_INCREMENT,
@@ -58,14 +66,6 @@ CREATE TABLE TMDBPerson(
     homepage TEXT,
     home_country VARCHAR(255),
     imdb_link TEXT,
-    PRIMARY KEY (id)
-);
-
-DROP TABLE IF EXISTS IMDBRatings;
-CREATE TABLE IMDBRatings(
-    id TEXT,
-    rating FLOAT,
-    votes INTEGER,
     PRIMARY KEY (id)
 );
 
