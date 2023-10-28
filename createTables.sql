@@ -13,10 +13,10 @@ CREATE TABLE IMDBMovie (
 
 DROP TABLE IF EXISTS IMDBPerson;
 CREATE TABLE IMDBPerson(
-    mid INT NOT NULL AUTO_INCREMENT,
+    mid INT NOT NULL,
     name VARCHAR(255),
-    birthday YEAR,
-    deathday YEAR,
+    birthday INT,
+    deathday INT,
     primary_profession TEXT,
     known_for TEXT,
     imdb_link TEXT,
@@ -37,7 +37,7 @@ CREATE TABLE TMDBMovie (
     title VARCHAR(255),
     original_title VARCHAR(255),
     release_date DATE,
-    runtime INT,
+    runtime FLOAT,
     is_adult BOOLEAN,
     imdb_link TEXT,
     overview TEXT,
@@ -80,9 +80,25 @@ CREATE TABLE RTMovie(
     rating TEXT
 );
 
+DROP TABLE IF EXISTS TIMDBMovie;
+CREATE TABLE TIMDBMovie(
+    movieid TEXT,
+    title TEXT,
+    release_date TEXT,
+    imdb_link TEXT
+);
+
+DROP TABLE IF EXISTS TIMDBRatings;
+CREATE TABLE TIMDBRatings(
+    movieid TEXT,
+    imdb_link TEXT,
+    rating FLOAT
+);
+
 DROP TABLE IF EXISTS Mapping;
 CREATE TABLE Mapping(
     movieId TEXT,
-    imDBId TEXT,
-    tmdbId TEXT
+    imdbId TEXT,
+    tmdbId TEXT,
+    timdbId TEXT
 );
