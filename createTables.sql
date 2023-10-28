@@ -27,8 +27,7 @@ DROP TABLE IF EXISTS IMDBRatings;
 CREATE TABLE IMDBRatings(
     id TEXT,
     rating FLOAT,
-    votes INTEGER,
-    PRIMARY KEY (id)
+    votes INTEGER
 );
 
 DROP TABLE IF EXISTS TMDBMovie;
@@ -93,6 +92,30 @@ CREATE TABLE TIMDBRatings(
     movieid TEXT,
     imdb_link TEXT,
     rating FLOAT
+);
+
+DROP TABLE IF EXISTS mldbmovie;
+CREATE TABLE mldbmovie(
+	movieid TEXT,
+    title TEXT,
+    release_date TEXT,
+    imdb_link TEXT
+);
+
+DROP TABLE IF EXISTS mldbratings;
+CREATE TABLE mldbratings(
+    movieid TEXT,
+    imdb_link TEXT,
+    rating FLOAT
+);
+
+DROP TABLE IF EXISTS CAPIPerson;
+CREATE TABLE CAPIPerson(
+    name TEXT,
+    birthday INT,
+    occupation TEXT,
+    gender TEXT,
+    nationality TEXT
 );
 
 DROP TABLE IF EXISTS Mapping;
