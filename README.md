@@ -7,7 +7,7 @@ Having difficulty choosing what to watch? **Not Anymore**
 
 * **Engineering:**
     
-    There's a growing need for streamlined experiences in cinema, where storytelling meets technology. Our motivation is to create a platform that simplifies movie exploration. By integrating data from different sources and employing intelligent algorithms, we aim to provide users with a go-to movie recommendation platform aligned with their interests.
+    There's a growing need for streamlined experiences in Indian Cinema, where storytelling meets technology. Our motivation is to create a platform that simplifies movie exploration. By integrating data from different sources and employing intelligent algorithms, we aim to provide users with a go-to movie recommendation platform aligned with their interests and we want to test this idea out in the case of Indian Cinema to get a better understanding of the audience.
 
 * **Research:**
     
@@ -41,9 +41,14 @@ Having difficulty choosing what to watch? **Not Anymore**
 
     The TMDb dataset is a valuable resource containing extensive information about movies and TV shows, including details such as cast, crew, plot summaries, and user ratings.
 
+* **TIMDb Dataset**
+
+    The TIMDb dataset is a rich collection of movie ratings and metadata for Indian movies, commonly used for collaborative filtering and recommendation system research.
+
 * **Celebrity API Dataset**
 
     The Celebrity API database provides comprehensive and up-to-date information on a wide range of prominent individuals from the entertainment industry and beyond.
+  
 ## Contributors
 
 - [Kartik Jain](https://www.github.com/Kartik20440)
