@@ -8,7 +8,7 @@ SELECT
     year(release_date) AS Release_Year,
     runtime,
     is_Adult AS isAdult,
-    NULL AS overview, -- NULL for columns from tables that do not have these fields
+    NULL AS overview, 
     NULL AS revenue,
     NULL AS budget,
     imdb_link
@@ -18,7 +18,7 @@ SELECT
     title,
     original_title,
     year(release_date) AS Release_Year,
-    NULL AS runtime, -- NULL for columns from tables that do not have these fields
+    NULL AS runtime, 
     NULL AS isAdult,
     overview,
     revenue,
@@ -28,7 +28,7 @@ FROM tmdbmovie
 UNION
 SELECT
     title,
-    NULL AS original_title, -- NULL for columns from tables that do not have these fields
+    NULL AS original_title,
     release_date,
     NULL AS runtime,
     NULL AS isAdult,
