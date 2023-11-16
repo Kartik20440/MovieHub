@@ -261,6 +261,13 @@ def main():
 
 
 	elif choice == "Movies":
+		# if(st.button("Show Movies")):
+		with st.expander("List of Movies:"):
+			result = view_movies()
+			clean_df = pd.DataFrame(result,columns=['title', 'release_year', 'runtime'])
+			clean_df['runtime'] = clean_df['runtime'].fillna("Not Available")
+			st.dataframe(clean_df)
+
 		st.subheader("Enter Relevant Details:")
 		twitter_id = selectbox("Select a Twitter ID", user_list)
 		e_metric = selectbox("Select an option", ["Binary Weighting Scheme","Raw Count Weighting Scheme", "Term Frequency Weighting Scheme", "Log Normalization Weighting Scheme", "Double Normalization Weighting Scheme"])
