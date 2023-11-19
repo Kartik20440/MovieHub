@@ -222,8 +222,8 @@ def main():
 		# if(st.button("Show Movies")):
 		with st.expander("List of Movies:"):
 			result = view_movies()
-			clean_df = pd.DataFrame(result,columns=['title', 'release_year', 'runtime'])
-			clean_df['runtime'] = clean_df['runtime'].fillna("Not Available")
+			clean_df = pd.DataFrame(result,columns=['Title', 'Release Year', 'Runtime (in minutes)'])
+			# clean_df['runtime'] = clean_df['runtime'].fillna("Not Available")
 			st.dataframe(clean_df)
 
 		st.write("**Filters:**")
@@ -234,9 +234,46 @@ def main():
 
 		if(ryear>0):
 			result = filterbyyear(ryear)
-			clean_df = pd.DataFrame(result,columns=['title', 'release_year', 'runtime'])
-			clean_df['runtime'] = clean_df['runtime'].fillna("Not Available")
+			clean_df = pd.DataFrame(result,columns=['Title', 'Overview', 'Runtime (in minutes)'])
+			# clean_df['runtime'] = clean_df['runtime'].fillna("Not Available")
 			st.dataframe(clean_df)
+		
+		elif(rate!="None"):
+			if(rate=="Increasing"):
+				result = filterbyrating("Increasing")
+				clean_df = pd.DataFrame(result,columns=['Title', 'Release Year', 'Rating', 'Overview'])
+				# clean_df['runtime'] = clean_df['runtime'].fillna("Not Available")
+				st.dataframe(clean_df)
+			else:
+				result = filterbyrating("Decreasing")
+				clean_df = pd.DataFrame(result,columns=['Title', 'Release Year', 'Rating', 'Overview'])
+				# clean_df['runtime'] = clean_df['runtime'].fillna("Not Available")
+				st.dataframe(clean_df)
+		
+		elif(length!="None"):
+			if(length=="Short Film"):
+				result = filterbyruntime("Short")
+				clean_df = pd.DataFrame(result,columns=['Title', 'Release Year', 'Runtime (in minutes)', 'Overview'])
+				# clean_df['runtime'] = clean_df['runtime'].fillna("Not Available")
+				st.dataframe(clean_df)
+			else:
+				result = filterbyruntime("Feature")
+				clean_df = pd.DataFrame(result,columns=['Title', 'Release Year', 'Runtime (in minutes)', 'Overview'])
+				# clean_df['runtime'] = clean_df['runtime'].fillna("Not Available")
+				st.dataframe(clean_df)
+		
+		elif(earn!="None"):
+			if(earn=="Profit"):
+				result = filterbyearning("Profit")
+				clean_df = pd.DataFrame(result,columns=['Title', 'Release Year','Overview','Earning'])
+				# clean_df['runtime'] = clean_df['runtime'].fillna("Not Available")
+				st.dataframe(clean_df)
+			else:
+				result = filterbyearning("Loss")
+				clean_df = pd.DataFrame(result,columns=['Title', 'Release Year','Overview','Earning'])
+				# clean_df['runtime'] = clean_df['runtime'].fillna("Not Available")
+				st.dataframe(clean_df)
+
 
 	elif choice == "People":
 		st.subheader("People")
