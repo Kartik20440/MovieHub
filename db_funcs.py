@@ -171,3 +171,4 @@ def place_order(pid, sid, bphno, paymode, pamount,datetoday):
 	c.execute('SELECT id FROM payment WHERE id=(SELECT MAX(id) FROM payment)')
 	data2 = c.fetchall()
 	return data2[0][0]
+

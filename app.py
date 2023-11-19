@@ -12,48 +12,6 @@
 # 	menu = ["Home","Register as Buyer","Register as Seller","Sell Product","Update Your Product","View Products","Buy Product","Delete Product","Employee Access","About"]
 # 	choice = st.sidebar.selectbox("Menu",menu)
 
-# 	if choice == "Home":
-# 		st.title("OSW")
-# 		st.header("Welcome to OSW!!")
-# 		st.text("Have a Happy Buying and Selling Experience")
-
-# 	elif choice == "Register as Buyer":
-# 		st.subheader("Enter your Details:")
-# 		bname = st.text_input("Name")
-# 		bphno = st.text_input("Phone No")
-# 		bemail = st.text_input("Email")
-# 		bstate = st.text_input("State")
-# 		bzip = st.number_input("Postal Zip", step=1)
-# 		bbudget = st.number_input("Budget", step=1)
-# 		if st.button("Register"):
-# 			add_buyer_data(bname, bphno, bemail, bstate, bzip, bbudget)
-# 			st.warning("Hi '{}'! You are registered as a new Buyer".format(bname))
-
-# 	elif choice == "Register as Seller":
-# 		st.subheader("Enter your Details:")
-# 		sname = st.text_input("Name")
-# 		sphno = st.text_input("Phone No")
-# 		semail = st.text_input("Email")
-# 		sstate = st.text_input("State")
-# 		szip = st.number_input("Postal Zip", step=1)
-		
-# 		if st.button("Register"):
-# 			sid = add_seller_data(sname, sphno, semail, sstate, szip)
-# 			st.warning("Hi '{}'! Your Unique Seller ID is '{}'".format(sname,sid))
-
-# 	elif choice == "Sell Product":
-# 		st.subheader("List your Product:")
-# 		Name = st.text_input("Product Name")
-# 		Type = st.text_input("Product Type")
-# 		price = st.number_input("Price", step=1)
-# 		qty = st.number_input("Quantity", step=1)
-# 		dp = st.date_input("date posted")
-# 		us = st.number_input("Use Status(in months)", step=1)
-# 		sid = st.number_input("Enter your Seller ID", step=1)
-# 		if st.button("Add Product"):
-# 			add_data(Name, Type, price, qty, dp, us, sid)
-# 			st.warning("Your Product: '{}' has been added".format(Name))
-
 # 	elif choice == "View Products":
 # 		st.subheader("Products")
 # 		with st.expander("View Data"):
@@ -268,29 +226,20 @@ def main():
 			clean_df['runtime'] = clean_df['runtime'].fillna("Not Available")
 			st.dataframe(clean_df)
 
-		st.subheader("Enter Relevant Details:")
-		twitter_id = selectbox("Select a Twitter ID", user_list)
-		e_metric = selectbox("Select an option", ["Binary Weighting Scheme","Raw Count Weighting Scheme", "Term Frequency Weighting Scheme", "Log Normalization Weighting Scheme", "Double Normalization Weighting Scheme"])
-		kwe_metric = selectbox("Select an option", ["YAKE", "RAKE", "KeyBert"])
-		number_news = st.number_input('How many news articles do you want?', 8,12)
+		st.write("**Filters:**")
+		ryear = st.number_input("Release Year",step=1)
+		rate = st.selectbox("Ratings", ["None","Increasing", "Decreasing"])
+		length = st.selectbox("Length of Movie", ["None", "Short Film", "Feature Film"])
+		earn = st.selectbox('Earning', ["None","Profit", "Loss"])
 
-		if st.button("Search"):
-			with st.spinner('Loading News Articles...'):
-				rain(emoji="📰", font_size=45, falling_speed=5, animation_length="1")
-				time.sleep(9)
-			
-			qvector = get_query_vector(twitter_id)
-			similarity_matrix = helper_1(e_metric, qvector)
-			top_x_news = recommend_top_10_articles(similarity_matrix, number_news)
+		if(ryear>0):
+			result = filterbyyear(ryear)
+			clean_df = pd.DataFrame(result,columns=['title', 'release_year', 'runtime'])
+			clean_df['runtime'] = clean_df['runtime'].fillna("Not Available")
+			st.dataframe(clean_df)
 
-			st.subheader("**Top %d news articles in the Motion:**" % number_news)
-			for i in range(len(top_x_news)):
-				st.write("%s."%str(i+1), top_x_news[i][2], "[🔗](%s)" % top_x_news[i][1])
-			
-			st.subheader("**Top %d news articles against the Motion:**" % number_news)
-			for i in range(len(top_x_news)):
-				st.write("%s."%str(i+1), top_x_news[i][2], "[🔗](%s)" % top_x_news[i][1])
-
+	elif choice == "People":
+		st.subheader("People")
 
 	elif choice == "Creators":
 		tab1, tab2, tab3, tab4= st.tabs(["Kartik Jain", "Manas Agarwal", "Neev Swarnakar", "Uttkarsh Singh"])
