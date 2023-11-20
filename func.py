@@ -10,6 +10,7 @@ mydb = mysql.connector.connect(
 )
 c = mydb.cursor()
 
+# ###############################################################################################################################################################
 def view_movies():
 	c.execute('SELECT title, release_year, runtime FROM movie')
 	data = c.fetchall()
@@ -42,7 +43,6 @@ def filterbyrating(rating):
     data = c.fetchall()
     return data
     
-
 def filterbyruntime(runtime):
     if(runtime == "Short"):
         c.execute('Select title, release_year, runtime, overview From movie Where runtime <= 100')
@@ -427,7 +427,6 @@ Having Rating >= %s''',(rate,))
             data = c.fetchall()
             return data
 
-
 def filterbyrelease_rating_length_earning(release,rate,length,earn):
     if(earn == "Profit"):
         if(length == "Short Film"):
@@ -524,3 +523,10 @@ WHERE m.revenue-m.budget<0 and m.revenue!=0 and m.budget!=0 and m.runtime > 100 
 Having Rating >= %s''',(release,rate,))
             data = c.fetchall()
             return data
+
+# ###############################################################################################################################################################
+def view_people():
+    c.execute('SELECT name, profession, gender, birthyear FROM person')
+    
+    data = c.fetchall()
+    return data

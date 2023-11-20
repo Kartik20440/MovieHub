@@ -377,7 +377,16 @@ def main():
 
 
 	elif choice == "People":
-		st.subheader("People")
+		with st.expander("List of People:"):
+			result = view_people()
+			clean_df = pd.DataFrame(result,columns=['Name', 'Profession', 'Gender', 'Birthyear'])
+			clean_df['Profession'] = clean_df['Profession'].fillna("Not Available")
+			st.dataframe(clean_df)
+
+		st.write("**Filters:**")
+		gender = st.selectbox("Gender",["None", "Male", "Female"])
+		profession = st.text_input("Profession")
+		age = st.number_input("Age",min_value=0,step=1)
 
 	elif choice == "Creators":
 		tab1, tab2, tab3, tab4= st.tabs(["Kartik Jain", "Manas Agarwal", "Neev Swarnakar", "Uttkarsh Singh"])
