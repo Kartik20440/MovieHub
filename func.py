@@ -559,3 +559,66 @@ WHERE(
     (deathyear IS NULL AND (YEAR(NOW()) - birthyear) >= %s))''',(age,age,))
     data = c.fetchall()
     return data
+
+def filterbygender_age_prof(gender,age,profession):
+    c.execute('''SELECT name, profession, gender,
+    CASE
+        WHEN deathyear IS NOT NULL THEN deathyear - birthyear
+        ELSE YEAR(NOW()) - birthyear
+    END AS age,
+    birthyear,
+    CASE
+        WHEN deathyear IS NOT NULL THEN deathyear
+        ELSE NULL
+    END AS deathyear
+FROM person
+WHERE(
+    (deathyear IS NOT NULL AND deathyear - birthyear >= %s AND profession LIKE '%{}%' AND gender = %s)
+    OR
+    (deathyear IS NULL AND (YEAR(NOW()) - birthyear) >= %s AND profession LIKE '%{}%' AND gender = %s))'''.format(profession,profession),(age,gender,age,gender,))
+    data = c.fetchall()
+    return data
+
+def filterbygender_prof(gender,prof):
+    c.execute("SELECT name, profession, gender, birthyear FROM person WHERE gender = %s and profession LIKE '%{}%'".format(prof), (gender,))
+    data = c.fetchall()
+    return data
+
+def filterbygender_age(gender,age):
+    c.execute('''
+    SELECT name,profession,
+    CASE
+        WHEN deathyear IS NOT NULL THEN deathyear - birthyear
+        ELSE YEAR(NOW()) - birthyear
+    END AS age,
+    birthyear,
+    CASE
+        WHEN deathyear IS NOT NULL THEN deathyear
+        ELSE NULL
+    END AS deathyear
+FROM person
+WHERE(
+    (deathyear IS NOT NULL AND deathyear - birthyear >= %s AND gender = %s)
+    OR
+    (deathyear IS NULL AND (YEAR(NOW()) - birthyear) >= %s AND gender = %s))''',(age,gender,age,gender,))
+    data = c.fetchall()
+    return data
+
+def filterbyage_prof(age,profession):
+    c.execute('''SELECT name, profession,
+    CASE
+        WHEN deathyear IS NOT NULL THEN deathyear - birthyear
+        ELSE YEAR(NOW()) - birthyear
+    END AS age,
+    birthyear,
+    CASE
+        WHEN deathyear IS NOT NULL THEN deathyear
+        ELSE NULL
+    END AS deathyear
+FROM person
+WHERE(
+    (deathyear IS NOT NULL AND deathyear - birthyear >= %s AND profession LIKE '%{}%')
+    OR
+    (deathyear IS NULL AND (YEAR(NOW()) - birthyear) >= %s AND profession LIKE '%{}%'))'''.format(profession,profession),(age,age,))
+    data = c.fetchall()
+    return data
