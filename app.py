@@ -214,7 +214,6 @@ def main():
 		my_expander3 = st.expander("**How to use MovieHub?**")
 		my_expander3.write("....")
 
-
 	elif choice == "Movies":
 		# if(st.button("Show Movies")):
 		with st.expander("List of Movies:"):
@@ -375,7 +374,6 @@ def main():
 					# clean_df['runtime'] = clean_df['runtime'].fillna("Not Available")
 					st.dataframe(clean_df)
 
-
 	elif choice == "People":
 		with st.expander("List of People:"):
 			result = view_people()
@@ -387,6 +385,24 @@ def main():
 		gender = st.selectbox("Gender",["None", "Male", "Female"])
 		profession = st.text_input("Profession")
 		age = st.number_input("Age",min_value=0,step=1)
+
+		if(gender != "None"):
+			result = filterbygender(gender)
+			clean_df = pd.DataFrame(result,columns=['Name', 'Profession', 'Gender', 'Birthyear'])
+			clean_df['Profession'] = clean_df['Profession'].fillna("Not Available")
+			st.dataframe(clean_df)
+
+		elif(len(profession)>0):
+			result = filterbyprofession(profession)
+			clean_df = pd.DataFrame(result,columns=['Name','Profession','Gender','Birthyear'])
+			# clean_df['Profession'] = clean_df['Profession'].fillna("Not Available")
+			st.dataframe(clean_df)
+		
+		elif(age>0):
+			result = filterbyage(age)
+			clean_df = pd.DataFrame(result,columns=['Name','Age','Birthyear','Deathyear'])
+			# clean_df['Deathyear'] = clean_df['Deathyear'].fillna("Is Alive")
+			st.dataframe(clean_df)
 
 	elif choice == "Creators":
 		tab1, tab2, tab3, tab4= st.tabs(["Kartik Jain", "Manas Agarwal", "Neev Swarnakar", "Uttkarsh Singh"])

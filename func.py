@@ -527,6 +527,35 @@ Having Rating >= %s''',(release,rate,))
 # ###############################################################################################################################################################
 def view_people():
     c.execute('SELECT name, profession, gender, birthyear FROM person')
-    
+    data = c.fetchall()
+    return data
+
+def filterbygender(gen):
+    c.execute('SELECT name, profession, gender, birthyear FROM person WHERE gender = %s', (gen,))
+    data = c.fetchall()
+    return data
+
+def filterbyprofession(profession):
+    c.execute("SELECT name, profession, gender, birthyear FROM person WHERE profession LIKE '%{}%'".format(profession))
+    data = c.fetchall()
+    return data
+
+def filterbyage(age):
+    c.execute('''
+    SELECT name,
+    CASE
+        WHEN deathyear IS NOT NULL THEN deathyear - birthyear
+        ELSE YEAR(NOW()) - birthyear
+    END AS age,
+    birthyear,
+    CASE
+        WHEN deathyear IS NOT NULL THEN deathyear
+        ELSE NULL
+    END AS deathyear
+FROM person
+WHERE(
+    (deathyear IS NOT NULL AND deathyear - birthyear >= %s)
+    OR
+    (deathyear IS NULL AND (YEAR(NOW()) - birthyear) >= %s))''',(age,age,))
     data = c.fetchall()
     return data
