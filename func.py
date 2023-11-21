@@ -1,5 +1,3 @@
-import pandas as pd
-
 import mysql.connector
 
 mydb = mysql.connector.connect(

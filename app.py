@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 from func import *
 from streamlit_extras.mention import mention
 
