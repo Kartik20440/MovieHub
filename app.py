@@ -20,11 +20,11 @@ def main():
 		st.header("Welcome to MovieHub!!")
 		st.text("Having difficulty choosing what to watch? Not Anymore")
 		my_expander1 = st.expander("**What is MovieHub?**")
-		my_expander1.write("....")
+		my_expander1.write("MovieHub is a platform where you can find movies and people related to them. You can also filter movies and people based on your preferences.")
 		my_expander2 = st.expander("**How does it work?**")
-		my_expander2.write("....")
+		my_expander2.write("MovieHub uses the data from IMDb, TMDB, MovieLens DB, TiMDb to provide you with the best results.")
 		my_expander3 = st.expander("**How to use MovieHub?**")
-		my_expander3.write("....")
+		my_expander3.write("MovieHub has 3 main sections: Movies, People, and Creators. You can use the sidebar to navigate between them. You can also use the filters to get more specific results.")
 
 	elif choice == "Movies":
 		# if(st.button("Show Movies")):
